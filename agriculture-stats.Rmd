@@ -1,0 +1,27 @@
+---
+title: "Agricultural Statistics"
+author: "Hadrien"
+date: "3/27/2019"
+output: html_document
+---
+
+```{r}
+######################
+# load and tidy data #
+######################
+
+library(tidyverse)
+library(readr)
+
+# load data
+df <- read_csv("data/Production_Crops_E_All_Data_NOFLAG.csv")
+
+# transform from wide to long format
+df <- df %>% gather(Year, Value, Y1961:Y2017)
+
+glimpse(df)
+
+
+
+```
+
