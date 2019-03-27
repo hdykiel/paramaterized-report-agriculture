@@ -21,19 +21,25 @@ df <- read_csv("data/Production_Crops_E_All_Data_NOFLAG.csv")
 # transform from wide to long format
 df <- df %>% gather(Year, Value, Y1961:Y2017)
 
+# clean up year
+df$Year <-  df2$Year %>% str_remove("Y") %>% as.integer()
+
 glimpse(df)
 
 
 
 ```
 
-# Top production
+# Top production by crop (worldwide)
 
 ```{r}
-head(df %>% filter(!grepl("Almonds", Item)))
 
-df_total_production <- df %>%
-  filter(Element == "Production", !grepl("Total|Primary|Rice Milled Eqv", Item)) %>%
+# remove aggregates and yield
+
+df <- df %>% 
+  filter(Element == "Production", !grepl("Total|Primary|Rice Milled Eqv", Item))
+
+df_total_production <-  df %>%
   group_by(Item) %>%
   summarise(tonnes_produced = sum(na.omit(Value)))
 
@@ -44,6 +50,18 @@ df_total_production %>%
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 
+```
+ 
+ # Production trend 
+ 
+```{r}
+crop <- "Wheat"
+country <- "Saudi Arabia"
+
+# plot production by crop and country
+df %>%
+  filter( Item == crop, Area == country) %>%
+  ggplot(aes(Year,Value)) + geom_point()
 ```
  
  
