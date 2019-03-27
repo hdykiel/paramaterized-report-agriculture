@@ -5,6 +5,8 @@ date: "3/27/2019"
 output: html_document
 ---
 
+Data source: [Food and Agricultural Organization of the United Nations](http://www.fao.org/faostat/en/#data/QC)
+
 ```{r}
 ######################
 # load and tidy data #
@@ -25,3 +27,23 @@ glimpse(df)
 
 ```
 
+# Top production
+
+```{r}
+head(df %>% filter(!grepl("Almonds", Item)))
+
+df_total_production <- df %>%
+  filter(Element == "Production", !grepl("Total|Primary|Rice Milled Eqv", Item)) %>%
+  group_by(Item) %>%
+  summarise(tonnes_produced = sum(na.omit(Value)))
+
+df_total_production %>% 
+  top_n(20,tonnes_produced) %>%
+    ggplot(aes(reorder(Item,  -tonnes_produced), tonnes_produced)) + geom_bar(stat =
+                                                                        "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+```
+ 
+ 
