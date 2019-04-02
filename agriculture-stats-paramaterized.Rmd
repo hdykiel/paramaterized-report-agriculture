@@ -3,6 +3,8 @@ title: "Agricultural Statistics"
 author: "Hadrien"
 date: "3/27/2019"
 output: html_document
+params:
+  country: "Saudi Arabia"
 ---
 
 # Overview 
@@ -12,9 +14,24 @@ This analysis aims to better understand agricultural production trends in order 
 
 **Data:** Data for this analysis was obtained from the [Food and Agricultural Organization of the United Nations](http://www.fao.org/faostat/en/#data/QC) website on April 1st, 2019. Data was downloaded as the bulk download "All Data".
 
+**Using this report** 
+
+This report was designed so it can be run for any country and food type the user wishes to explore. To view this report, simply enter to the report URL and login to RStudio Connect. On the left hand side of the report, select your desired input paramaters and click run. 
+
+**Contributing** 
+
+To contribute to this project, fork this report's repository on [github](https://github.com/hdykiel/paramaterized-report-agriculture/commits/master) and create a new branch using the format "your-name-feature-name" and submit a pull request.
+
+
 ```{r setup, include=FALSE}
 # set default settings for all code chunks
 knitr::opts_chunk$set(message=FALSE, warnings=FALSE)
+
+# load required packages
+library(tidyverse)
+library(readr)
+library(choroplethr)
+library(choroplethrMaps)
 ```
 
 
@@ -24,8 +41,6 @@ knitr::opts_chunk$set(message=FALSE, warnings=FALSE)
 # load and tidy data #
 ######################
 
-library(tidyverse)
-library(readr)
 
 # load data
 df <- read_csv("data/Production_Crops_E_All_Data_NOFLAG.csv")
@@ -36,36 +51,55 @@ df <- df %>% gather(Year, Value, Y1961:Y2017)
 # clean up year
 df$Year <-  df$Year %>% str_remove("Y") %>% as.integer()
 
+# remove aggregates and yield
+df <- df %>% 
+  filter(Element == "Production", !grepl("Total|Primary|Rice Milled Eqv", Item))
+
+
 ```
 
 
 
-```{r, echo=FALSE}
+```{r top-crops, echo=FALSE}
 
 ######################################
 # Top production by crop (worldwide) #
 ######################################
 
-library(choroplethr)
-
-# remove aggregates and yield
-
-df <- df %>% 
-  filter(Element == "Production", !grepl("Total|Primary|Rice Milled Eqv", Item))
-
+# summarize by food item
 df_total_production <-  df %>%
   group_by(Item) %>%
   summarise(tonnes_produced = sum(na.omit(Value)))
 
+# total production by crop barplot
 ggplot <- df_total_production %>%
   top_n(20, tonnes_produced) %>%
   ggplot(aes(reorder(Item,-tonnes_produced), tonnes_produced)) + geom_bar(stat =
                                                                             "identity") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
-# demonstrate default options
-data(df_pop_country)
-country_choropleth(c("USA", "Canada"), c(100,50))
+
+```
+
+
+```{r choropleth}
+
+# summarize total production by country
+df_total_by_country <- df %>%
+  group_by(Area) %>%
+  summarize(value = sum(na.omit(Value))) %>%
+  mutate(region = str_to_lower(Area)) %>% 
+  select(region, value) # reorganize columns, drop Area
+
+# filter any country name not found in choroplethrMaps::country.map data frame
+data("country.map") # load data set
+df_total_by_country <- df_total_by_country %>%
+  filter(region %in% country.map$region)
+
+# production by country choropleth
+country_choropleth(df_total_by_country)
+
+
 
 
 ```
