@@ -2,10 +2,12 @@
 title: "Agricultural Trends"
 author: "Hadrien"
 date: "3/27/2019"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 params:
-  country: "Mexico"
-  crop: "Wheat"
+  country: Mexico
+  crop: Wheat
 ---
 
 # Overview 

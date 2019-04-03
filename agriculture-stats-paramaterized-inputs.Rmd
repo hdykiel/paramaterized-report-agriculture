@@ -2,14 +2,19 @@
 title: "Agricultural Trends"
 author: "Hadrien"
 date: "3/27/2019"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 params:
   country:
-    label: "Country"
-    value: "United States of America"
+    choices:
+    - United States of America
+    - Mexico
+    - Canada
     input: select
-    choices: ["United States of America", Mexico, Canada]
-  crop: "Wheat"
+    label: Country
+    value: United States of America
+  crop: Wheat
 ---
 
 # Overview 
