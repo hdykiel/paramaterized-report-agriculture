@@ -4,7 +4,11 @@ author: "Hadrien"
 date: "3/27/2019"
 output: html_document
 params:
-  country: "Mexico"
+  country:
+    label: "Country"
+    value: "United States of America"
+    input: select
+    choices: ["United States of America", Mexico, Canada]
   crop: "Wheat"
 ---
 
@@ -152,7 +156,7 @@ plot2
 
 </div> 
 
-### Production trend
+### Production trend (`r params$country`)
 
  
 [`r str_to_title(stats$region)`](`r country_url`) is a country in `r stats$region_wb` with an estimated population of `r stats$pop_est`. Its government system is `r stats$type` and is categorized as having a "`r stats$economy`" economy.
