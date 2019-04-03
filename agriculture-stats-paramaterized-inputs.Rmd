@@ -184,7 +184,11 @@ email <-
 
 # The email message can always be
 # previewed using `preview_email()`
-preview_email(email = email)
+# preview_email(email = email)
+
+# Give the HTML email data to RStudio Connect.
+rmarkdown::output_metadata$set(rsc_email_body_html = email$html_str)
+rmarkdown::output_metadata$set(rsc_email_images = email$images)
 
 
 
