@@ -40,6 +40,7 @@ library(tidyverse)
 library(readr)
 library(choroplethr)
 library(choroplethrMaps)
+library(blastula)
 ```
 
 
@@ -160,3 +161,32 @@ plot2
 
  
 [`r str_to_title(stats$region)`](`r country_url`) is a country in `r stats$region_wb` with an estimated population of `r stats$pop_est`. Its government system is `r stats$type` and is categorized as having a "`r stats$economy`" economy.
+
+
+```{r email-notifications}
+
+# Create a simple email message using
+# Markdown formatting with the blastula package
+email <-
+  compose_email(
+  body = "
+  Time generated: {Sys.time()}
+
+  ## {params$country} {params$crop} production
+
+  We can use Markdown formatting \\
+  to **embolden** text or to add \\
+  *emphasis*.
+  
+  {add_ggplot(plot_object = plot2, width = 5, height = 5)}
+
+  Please contact the reporting team with any questions about this report.")
+
+# The email message can always be
+# previewed using `preview_email()`
+preview_email(email = email)
+
+
+
+```
+
