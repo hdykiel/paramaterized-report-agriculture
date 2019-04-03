@@ -3,10 +3,9 @@ title: "Agricultural Trends"
 author: "Hadrien"
 date: "3/27/2019"
 output:
-  pdf_document: default
   html_document: default
 params:
-  country: Mexico
+  country: Saudi Arabia
   crop: Wheat
 ---
 
@@ -22,7 +21,7 @@ This analysis aims to better understand agricultural production trends in order 
 To view this report, go to the report URL on RStudio Connect. On the left hand side of the report, select your desired input paramaters and click run. A report can be generated for any country & crop combination. This report was designed for the following users: 
 
 - Marketing managers: explore production trends to plan which markets to invest in and create campaigns for. 
-- Product managers: identify which product lines to invest in to help farmers overcome challenges such as droughts and desertification and meet the demand of an ever increasing population. K
+- Product managers: identify which product lines to invest in to help farmers overcome challenges such as droughts and desertification and meet the demand of an ever increasing population.
 
 **Contributing** 
 
@@ -38,6 +37,7 @@ library(tidyverse)
 library(readr)
 library(choroplethr)
 library(choroplethrMaps)
+library(blastula)
 ```
 
 
@@ -154,7 +154,9 @@ plot2
 
 </div> 
 
-### Production trend
+### Production trend (`r params$country`)
 
  
 [`r str_to_title(stats$region)`](`r country_url`) is a country in `r stats$region_wb` with an estimated population of `r stats$pop_est`. Its government system is `r stats$type` and is categorized as having a "`r stats$economy`" economy.
+
+
