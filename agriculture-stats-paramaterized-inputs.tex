@@ -1,0 +1,146 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Agricultural Trends},
+            pdfauthor={Hadrien},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Agricultural Trends}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Hadrien}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{3/27/2019}
+
+
+\begin{document}
+\maketitle
+
+\hypertarget{overview}{%
+\section{Overview}\label{overview}}
+
+This analysis aims to better understand agricultural production trends
+in order to better guide decisions related to the manufacture of farming
+equipment to ensure future food security in different geographies.
+
+\textbf{Data:} Data for this analysis was obtained from the
+\href{http://www.fao.org/faostat/en/\#data/QC}{Food and Agricultural
+Organization of the United Nations} website on April 1st, 2019. Data was
+downloaded as the bulk download ``All Data''.
+
+\textbf{Using this report}
+
+To view this report, go to the report URL on RStudio Connect. On the
+left hand side of the report, select your desired input paramaters and
+click run. A report can be generated for any country \& crop
+combination. This report was designed for the following users:
+
+\begin{itemize}
+\tightlist
+\item
+  Marketing managers: explore production trends to plan which markets to
+  invest in and create campaigns for.
+\item
+  Product managers: identify which product lines to invest in to help
+  farmers overcome challenges such as droughts and desertification and
+  meet the demand of an ever increasing population. K
+\end{itemize}
+
+\textbf{Contributing}
+
+To contribute to this project, fork this report's repository on
+\href{https://github.com/hdykiel/paramaterized-report-agriculture/commits/master}{github}
+and create a new branch using the format ``your-name-feature-name'' and
+submit a pull request.
+
+\hypertarget{worldwide-production-of-wheat}{%
+\subsubsection{Worldwide production of
+Wheat}\label{worldwide-production-of-wheat}}
+
+\includegraphics{agriculture-stats-paramaterized-inputs_files/figure-latex/plot1-1.pdf}
+
+\includegraphics{agriculture-stats-paramaterized-inputs_files/figure-latex/plot2-1.pdf}
+
+\hypertarget{production-trend-mexico}{%
+\subsubsection{Production trend
+(Mexico)}\label{production-trend-mexico}}
+
+\href{https://en.wikipedia.org/wiki/Mexico}{Mexico} is a country in
+Latin America \& Caribbean with an estimated population of
+1.1121179\times 10\^{}\{8\}. Its government system is Sovereign country
+and is categorized as having a ``4. Emerging region: MIKT'' economy.
+
+
+\end{document}

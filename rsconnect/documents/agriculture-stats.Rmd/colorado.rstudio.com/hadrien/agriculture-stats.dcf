@@ -1,0 +1,12 @@
+name: agriculture-stats
+title: agriculture-stats
+username: hadrien
+account: hadrien
+server: colorado.rstudio.com
+hostUrl: https://colorado.rstudio.com/rsc/__api__
+appId: 2303
+bundleId: 25657
+url: https://colorado.rstudio.com:443/rsc/content/2303/
+when: 1556821246.88921
+asMultiple: FALSE
+asStatic: FALSE

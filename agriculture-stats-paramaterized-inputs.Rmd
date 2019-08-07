@@ -1,20 +1,27 @@
 ---
 title: "Agricultural Trends"
-author: "Hadrien"
+author: "Hadrien@rstudio.com"
 date: "3/27/2019"
 output:
   html_document: default
-  pdf_document: default
 params:
   country:
     choices:
     - United States of America
     - Mexico
     - Canada
+    - Saudi Arabia
+    - Brazil
+    - France
+    - Italy
     input: select
     label: Country
     value: United States of America
-  crop: Wheat
+  crop:
+    choices: [Wheat, Rice, Maiz, Barley, Apples, "Beans, dry", Sugar cane, Carrots and turnips, Bananas]
+    input: select
+    label: Crop
+    value: Wheat
 ---
 
 # Overview 
@@ -26,7 +33,7 @@ This analysis aims to better understand agricultural production trends in order 
 
 **Using this report** 
 
-To view this report, go to the report URL on RStudio Connect. On the left hand side of the report, select your desired input paramaters and click run. A report can be generated for any country & crop combination. This report was designed for the following users: 
+To view this report, go to the [report URL](https://colorado.rstudio.com/rsc/agrilculture-trends-paramaterized-with-inputs/) on RStudio Connect. On the left hand side of the report, select your desired input paramaters and click run. A report can be generated for any country & crop combination. This report was designed for the following users: 
 
 - Marketing managers: explore production trends to plan which markets to invest in and create campaigns for. 
 - Product managers: identify which product lines to invest in to help farmers overcome challenges such as droughts and desertification and meet the demand of an ever increasing population.
@@ -38,7 +45,7 @@ To contribute to this project, fork this report's repository on [github](https:/
 
 ```{r setup, include=FALSE}
 # set default settings for all code chunks
-knitr::opts_chunk$set(message=FALSE, warning=FALSE, echo = FALSE)
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, echo=FALSE)
 
 # load required packages
 library(tidyverse)
@@ -156,7 +163,7 @@ plot1
 
 <div style="float:right; margin-left: 10%;">
 
-```{r plot2, fig.width=5}
+```{r plot2, fig.width=6}
 plot2
 ```
 
@@ -168,10 +175,32 @@ plot2
 [`r str_to_title(stats$region)`](`r country_url`) is a country in `r stats$region_wb` with an estimated population of `r stats$pop_est`. Its government system is `r stats$type` and is categorized as having a "`r stats$economy`" economy.
 
 
-```{r email-notifications}
+
+```{r email-options}
+
+# Set e-mail subject
+rmarkdown::output_metadata$set(rsc_email_subject = "My awesome e-mail subject")
+
+# Construct e-mail subject
+subject <- rmarkdown::output_metadata$get("rsc_email_subject") # retrieve current email subject
+difference <- (1200-1000)/1000 # some metric
+rmarkdown::output_metadata$set(rsc_email_subject = paste0(subject," - ", difference*100, "%", " change!"))
+
+# Suppress e-mail
+if (difference < .1) {
+  rmarkdown::output_metadata$set(rsc_suppress_email_scheduled = TRUE)
+}
+```
+
+
+
+
+```{r compose-email}
 
 # Create a simple email message using
 # Markdown formatting with the blastula package
+library(blastula)
+
 email <-
   compose_email(
   body = "
@@ -183,7 +212,7 @@ email <-
   to **embolden** text or to add \\
   *emphasis*.
   
-  {add_ggplot(plot_object = plot2, width = 5, height = 5)}
+  {add_ggplot(plot_object = plot2, width = 8, height = 5)}
 
   Please contact the reporting team with any questions about this report.")
 
@@ -194,7 +223,6 @@ email <-
 # Give the HTML email data to RStudio Connect.
 rmarkdown::output_metadata$set(rsc_email_body_html = email$html_str)
 rmarkdown::output_metadata$set(rsc_email_images = email$images)
-
 
 
 ```

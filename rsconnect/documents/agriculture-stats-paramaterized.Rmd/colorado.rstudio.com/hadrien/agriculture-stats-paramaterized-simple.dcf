@@ -1,0 +1,12 @@
+name: agriculture-stats-paramaterized-simple
+title: agriculture-stats-paramaterized-simple
+username: hadrien
+account: hadrien
+server: colorado.rstudio.com
+hostUrl: https://colorado.rstudio.com/rsc/__api__
+appId: 2298
+bundleId: 25483
+url: https://colorado.rstudio.com:443/rsc/content/2298/
+when: 1554385504.52223
+asMultiple: FALSE
+asStatic: FALSE

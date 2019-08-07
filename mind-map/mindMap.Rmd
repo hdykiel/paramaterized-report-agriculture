@@ -1,0 +1,24 @@
+---
+title: "Intro to RMD webinar mindmap"
+author: "Hadrien@rstudio.com"
+date: "4/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# library(networkD3)
+# #### Create tree from a hierarchical R list
+# # For an alternative structure see: http://stackoverflow.com/a/30747323/1705044
+# US_History <- list(name = "US History", children = list(
+#   list(name = "Early America",
+#                       children = list(list(name = "Native American Origins"))),
+#   list(name = "The Colonial Period",
+#                       children = list(list(name = "The Mayflower"))),
+#   list(name = "Revolutionary America"),
+#   list(name = "The Young Republic")
+#   ))
+# 
+# radialNetwork(List = US_History, fontSize = 10)
+
+```
+

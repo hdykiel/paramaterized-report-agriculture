@@ -1,0 +1,12 @@
+name: agriculature-stats-paramaterized-inputs
+title: agriculature-stats-paramaterized-inputs
+username: hadrien
+account: hadrien
+server: colorado.rstudio.com
+hostUrl: https://colorado.rstudio.com/rsc/__api__
+appId: 2300
+bundleId: 25468
+url: https://colorado.rstudio.com:443/rsc/content/2300/
+when: 1554306595.1876
+asMultiple: FALSE
+asStatic: FALSE

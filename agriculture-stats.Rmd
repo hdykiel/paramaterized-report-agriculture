@@ -1,6 +1,6 @@
 ---
-title: "Agricultural Statistics"
-author: "Hadrien"
+title: "Agricultural Trends"
+author: "Hadrien@rstudio.com"
 date: "3/27/2019"
 output: html_document
 ---
@@ -136,13 +136,13 @@ plot1
 
 <div style="float:right; margin-left: 10%;">
 
-```{r plot2, fig.width=5}
+```{r plot2, fig.width=6}
 plot2
 ```
 
 </div> 
 
-### Production trend United States
+### Production trend USA
 
 Insert markdown text here...
 

@@ -1,11 +1,10 @@
 ---
 title: "Agricultural Trends"
-author: "Hadrien"
+author: "Hadrien@rstudio.com"
 date: "3/27/2019"
-output:
-  html_document: default
+output: html_document
 params:
-  country: Saudi Arabia
+  country: United States of America
   crop: Wheat
 ---
 
@@ -148,7 +147,7 @@ plot1
 
 <div style="float:right; margin-left: 10%;">
 
-```{r plot2, fig.width=5}
+```{r plot2, fig.width=6}
 plot2
 ```
 
